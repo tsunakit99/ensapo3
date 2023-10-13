@@ -9,7 +9,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800 ">
                     <form method="POST" action="{{ route('clothes.store') }}" enctype="multipart/form-data">
                         @csrf
                         <label for="name">服の名前:</label>
@@ -30,7 +30,12 @@
                         </select>
                         <label for="image">服の画像:</label>
                         <input type="file" name="image" id="image">
-                        <button type="submit">登録</button>
+                        <!--<button type="submit">登録</button>-->
+                        <div class="flex items-center justify-end mt-4">
+                           <x-primary-button class="ml-3">
+                            {{ __('登録') }}
+                           </x-primary-button>
+                        </div>
                     </form>
                 </div>
             </div>
