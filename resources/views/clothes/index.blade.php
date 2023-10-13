@@ -26,7 +26,8 @@
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">{{$clothe->color->name}}</td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">{{$clothe->genre->name}}</td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
-                                    <img src="{{ asset('storage/' . $clothe->image) }}" alt="Clothe Image" class="w-16 h-16">
+                                    <!--<img src="{{ asset('storage/' . $clothe->image) }}" alt="Clothe Image" class="w-16 h-16">-->
+                                     <img src="{{ Storage::url($clothe->image) }}" width="25%">
                                 </td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">{{$clothe->updated_at}}</td>
                             </tr>
