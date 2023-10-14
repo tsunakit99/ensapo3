@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClothesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('auth')->group(function () {
+    Route::get('/clothes', [ClothesController::class, 'index'])->name('clothes.index');
+    Route::get('/clothes/create', 'ClothesController@create')->name('clothes.create');
+    Route::post('/clothes/store', 'ClothesController@store')->name('clothes.store');
+    Route::resource('clothes', ClothesController::class);
+
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +37,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__ . '/auth.php';
 require __DIR__.'/auth.php';
