@@ -22,14 +22,14 @@
                         <tbody>
                             @foreach ($clothes as $clothe)
                             <tr class="hover:bg-gray-lighter">
-                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600"white-space: nowrap>{{$clothe->name}}</td>
-                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600"white-space: nowrap>{{$clothe->color->name}}</td>
-                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600"white-space: nowrap>{{$clothe->genre->name}}</td>
+                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200"white-space: nowrap>{{$clothe->name}}</td>
+                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200"white-space: nowrap>{{$clothe->color->name}}</td>
+                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200"white-space: nowrap>{{$clothe->genre->name}}</td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
                                     <!--<img src="{{ asset('storage/' . $clothe->image) }}" alt="Clothe Image" class="w-16 h-16">-->
                                      <img src="{{ Storage::url($clothe->image) }}" style="display: block; margin: auto;" width="25%">
                                 </td>
-                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">{{$clothe->updated_at}}</td>
+                                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200">{{$clothe->updated_at}}</td>
                             </tr>
                             @endforeach
                         </tbody>
