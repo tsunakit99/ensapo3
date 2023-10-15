@@ -15,12 +15,12 @@
 
                         <div class="mb-4">
                             <label for="name" class="text-gray-700 dark:text-gray-300">服の名前:</label>
-                            <input type="text" name="name" id="name" class="form-input" placeholder="服の名前を入力してください">
+                            <input type="text" name="name" id="name" class="form-input" placeholder="服の名前を入力してください" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="color_id" class="text-gray-700 dark:text-gray-300">服の色:</label>
-                            <select name="color_id" id="color_id" class="form-select">
+                            <select name="color_id" id="color_id" class="form-select" required>
                                 <option value="1">暖色</option>
                                 <option value="2">寒色</option>
                                 <option value="3">白</option>
@@ -30,7 +30,7 @@
 
                         <div class="mb-4">
                             <label for="genre_id" class="text-gray-700 dark:text-gray-300">服のジャンル:</label>
-                            <select name="genre_id" id="genre_id" class="form-select">
+                            <select name="genre_id" id="genre_id" class="form-select" required>
                                 <option value="1">アウター</option>
                                 <option value="2">ロンT</option>
                                 <option value="3">Tシャツ</option>
@@ -40,7 +40,7 @@
 
                         <div class="mb-4">
                             <label for="image" class="text-gray-700 dark:text-gray-300">服の画像:</label>
-                            <input type="file" name="image" id="image" class="form-input" placeholder="画像をアップロードしてください">
+                            <input type="file" name="image" id="image" class="form-input" placeholder="画像をアップロードしてください" required>
                         </div>
 
                         <div class="flex items-center justify-center mt-4">

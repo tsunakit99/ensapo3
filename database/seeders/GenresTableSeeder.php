@@ -16,11 +16,11 @@ class GenresTableSeeder extends Seeder
         $genres = [
             ['name' => 'アウター'],
             ['name' => 'ロンT'],
-            ['name' => 'Tシャ�?'],
+            ['name' => 'Tシャツ'],
             ['name' => 'ズボン'],
         ];
 
-        // genres �?ーブルに�?ータを挿入
+        // genres テーブルにデータを挿入
         DB::table('genres')->insert($genres);
     }
 }
