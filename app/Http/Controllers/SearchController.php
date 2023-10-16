@@ -13,26 +13,29 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-     // リクエストから気温を取得
-    $temperature = $request->input('temperature');
+        // リクエストから気温を取得
+        $temperature = $request->input('temperature');
 
-    // 気温に応じてgenre_idを設定
-    $genre_id = 1; // デフォルト値
+        // 気温に応じてgenre_idを設定
+        $genre_id = 4; // デフォルト値
 
-    if ($temperature >= 26) {
-        $genre_id = 2;
-    } elseif ($temperature >= 16 && $temperature <= 25) {
-        $genre_id = 3;
-    }
+        if ($temperature >= 25) {
+            $genre_id = 3; // 25度以上ならジャンル3
+        } elseif ($temperature >= 16 && $temperature <= 24) {
+            $genre_id = 2; // 16度から24度の間ならジャンル2
+        } elseif ($temperature <= 15) {
+            $genre_id = 1; // 15度以下ならジャンル1
+        }
 
-    // Clothesテーブルから条件に合った服を取得
-    $clothes = Clothes::where('genre_id', $genre_id)->get();
+        // Clothesテーブルから条件に合った服を取得
+        // コントローラ内でのランダム選択
+        $clothes = Clothes::where('genre_id', $genre_id)->inRandomOrder()->first(); // ランダムに1つの服を取得
+        $pants = Clothes::where('genre_id', 4)->inRandomOrder()->first(); // ランダムに1つのパンツを取得
 
-    // Pantsテーブルから条件に合ったパンツを取得
-    $pants = Clothes::where('genre_id', 4)->get();
 
-    // 検索結果をビューに渡す
-    return view('search.result', compact('clothes', 'pants'));
+
+        // 検索結果をビューに渡す
+        return view('search.result', compact('clothes', 'pants', 'temperature'));
     }
 
     /**
