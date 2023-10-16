@@ -13,7 +13,7 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        // リクエストから気温を取得
+        /* リクエストから気温を取得
         $temperature = $request->input('temperature');
 
         // 気温に応じてgenre_idを設定
@@ -35,7 +35,38 @@ class SearchController extends Controller
 
 
         // 検索結果をビューに渡す
-        return view('search.result', compact('clothes', 'pants', 'temperature'));
+        return view('search.result', compact('clothes', 'pants', 'temperature')); */
+
+        $temperature = $request->input('temperature');
+        $clothesColor = $request->input('clothes_color');
+        $pantsColor = $request->input('pants_color');
+
+        $clothesQuery = Clothes::query();
+        $pantsQuery = Clothes::query();
+
+        if ($temperature >= 25) {
+            $clothesQuery->where('genre_id', 3);
+            $pantsQuery->where('genre_id', 4);
+        } elseif ($temperature >= 16 && $temperature <= 24) {
+            $clothesQuery->where('genre_id', 2);
+            $pantsQuery->where('genre_id', 4);
+        } elseif ($temperature <= 15) {
+            $clothesQuery->where('genre_id', 1);
+            $pantsQuery->where('genre_id', 4);
+        }
+
+        if (!empty($clothesColor)) {
+            $clothesQuery->where('color_id', $clothesColor);
+        }
+
+        if (!empty($pantsColor)) {
+            $pantsQuery->where('color_id', $pantsColor);
+        }
+
+        $clothes = $clothesQuery->inRandomOrder()->first();
+        $pants = $pantsQuery->inRandomOrder()->first();
+
+        return view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
     }
 
     /**
