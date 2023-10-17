@@ -17,9 +17,9 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::middleware('auth')->group(function () {
-      // ðŸ”½ è¿½åŠ ï¼ˆæ¤œç´¢ç”»é¢ï¼‰
+      // ? ’Ç‰ÁiŒŸõ‰æ–Êj
     Route::get('/search/input', [SearchController::class, 'create'])->name('search.input');
-    // ðŸ”½ è¿½åŠ ï¼ˆæ¤œç´¢å‡¦ç†ï¼‰
+    // ? ’Ç‰ÁiŒŸõˆ—j
     Route::get('/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/clothes', [ClothesController::class, 'index'])->name('clothes.index');
     Route::get('/clothes/create', 'ClothesController@create')->name('clothes.create');
