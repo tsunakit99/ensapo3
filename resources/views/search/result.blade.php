@@ -39,6 +39,23 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="flex items-center justify-end mt-4">
+                        <a onclick="window.location.reload(true);">
+                            <i class="fa fa-refresh" aria-hidden="true">
+                             <x-secondary-button class="ml-3">
+                            {{ __('検索結果を更新') }}
+                            </x-primary-button>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-end mt-4">
+                        <a href="{{route('search.input')}}">
+                            <x-secondary-button class="ml-3">
+                            {{ __('検索画面へ戻る') }}
+                            </x-primary-button>
+                        </a>
+                    </div>
+                    
                 </div>
             </div>
         </div>
