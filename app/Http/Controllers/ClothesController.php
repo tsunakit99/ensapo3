@@ -68,4 +68,37 @@ class ClothesController extends Controller
     // リダイレクト
     return redirect()->route('clothes.index');
 }
+
+public function destroy($id)
+{
+  $result = Clothes::find($id)->delete();
+  return redirect()->route('clothes.index');
+}
+
+public function edit($id)
+{
+  $clothe = Clothes::find($id);
+  return response()->view('clothes.edit', compact('clothe'));
+}
+
+public function update(Request $request, $id)
+{
+    // 指定した ID の服を取得
+    $clothes = Clothes::find($id);
+
+    // 服の情報を更新
+    $clothes->name = $request->input('name');
+    $clothes->color_id = $request->input('color_id');
+    $clothes->genre_id = $request->input('genre_id');
+
+    // 画像の更新など、必要なら他の属性も更新
+
+    // 服を保存
+    $clothes->save();
+
+    // 更新後のビューを返すか、リダイレクトする
+    return redirect()->route('clothes.index');
+}
+
+
 }

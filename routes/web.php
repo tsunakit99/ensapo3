@@ -17,14 +17,15 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::middleware('auth')->group(function () {
-      // ? ’Ç‰ÁiŒŸõ‰æ–Êj
+      // ? ï¿½Ç‰ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êj
     Route::get('/search/input', [SearchController::class, 'create'])->name('search.input');
-    // ? ’Ç‰ÁiŒŸõˆ—j
+    // ? ï¿½Ç‰ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
     Route::get('/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/clothes', [ClothesController::class, 'index'])->name('clothes.index');
     Route::get('/clothes/create', 'ClothesController@create')->name('clothes.create');
     Route::post('/clothes/store', 'ClothesController@store')->name('clothes.store');
     Route::resource('clothes', ClothesController::class);
+
 
 });
 
