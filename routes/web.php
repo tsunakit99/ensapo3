@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClothesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('auth')->group(function () {
+      // ? 追加（検索画面）
+    Route::get('/search/input', [SearchController::class, 'create'])->name('search.input');
+    // ? 追加（検索処理）
+    Route::get('/search/result', [SearchController::class, 'index'])->name('search.result');
+    Route::get('/clothes', [ClothesController::class, 'index'])->name('clothes.index');
+    Route::get('/clothes/create', 'ClothesController@create')->name('clothes.create');
+    Route::post('/clothes/store', 'ClothesController@store')->name('clothes.store');
+    Route::resource('clothes', ClothesController::class);
+
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +42,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__ . '/auth.php';
 require __DIR__.'/auth.php';
