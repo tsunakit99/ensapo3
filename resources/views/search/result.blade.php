@@ -21,6 +21,8 @@
                                     <h2 class="font-bold text-lg text-gray-dark dark:text-gray-200">{{$clothes->name}}</h2>
                                 </td>
                             </tr>
+                            @else
+                            <p>条件に合致する服が見つかりませんでした。</p>
                             @endif
 
                             @if ($pants)
@@ -32,6 +34,8 @@
                                     <h2 class="font-bold text-lg text-gray-dark dark:text-gray-200">{{$pants->name}}</h2>
                                 </td>
                             </tr>
+                            @else
+                            <p>条件に合致するパンツが見つかりませんでした。</p>
                             @endif
                         </tbody>
                     </table>
