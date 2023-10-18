@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Clothes;
+use App\Models\User;
 
 
 class SearchController extends Controller
@@ -37,12 +38,14 @@ class SearchController extends Controller
         // 検索結果をビューに渡す
         return view('search.result', compact('clothes', 'pants', 'temperature')); */
 
+        $user = auth()->user();
+
         $temperature = $request->input('temperature');
         $clothesColor = $request->input('clothes_color');
         $pantsColor = $request->input('pants_color');
 
-        $clothesQuery = Clothes::query();
-        $pantsQuery = Clothes::query();
+        $clothesQuery = $user->clothes(); // ユーザーが登録した服に関するクエリ
+        $pantsQuery = $user->clothes(); // ユーザーが登録したパンツに関するクエリ
 
         if ($temperature >= 25) {
             $clothesQuery->where('genre_id', 3);
