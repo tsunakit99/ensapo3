@@ -5,6 +5,7 @@
             {{ __('Clothes Registration') }}
         </h2>
     </x-slot>
+   
 
     <div class="py-12 flex justify-center">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">

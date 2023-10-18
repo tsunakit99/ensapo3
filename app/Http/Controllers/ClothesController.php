@@ -92,7 +92,7 @@ public function update(Request $request, $id)
     $clothes->genre_id = $request->input('genre_id');
 
     // 画像の更新など、必要なら他の属性も更新
-
+   
     // 服を保存
     $clothes->save();
 

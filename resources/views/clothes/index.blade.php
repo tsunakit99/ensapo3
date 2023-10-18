@@ -15,10 +15,10 @@
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">服の名前</th>
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">色</th>
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>ジャンル</th>
-                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">画像</th>
-                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">更新日時</th>
-                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">編集</th>
-                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">削除</th>
+                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>画像</th>
+                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>更新日時</th>
+                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>編集</th>
+                                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark"white-space: nowrap>削除</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,7 +29,12 @@
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200"white-space: nowrap>{{$clothe->genre->name}}</td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
                                     <!--<img src="{{ asset('storage/' . $clothe->image) }}" alt="Clothe Image" class="w-16 h-16">-->
-                                     <img src="{{ Storage::url($clothe->image) }}" style="display: block; margin: auto;" width="25%">
+                                     <!-- <img src="{{ Storage::url($clothe->image) }}" style="display: block; margin: auto;" width="25%"> -->
+                                     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+                                    <a href="{{ Storage::url($clothe->image) }}" data-lightbox="group"><img src="{{ Storage::url($clothe->image) }}"style="display: block; margin: auto;" width="25%"></a>
+
                                 </td>
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200">{{$clothe->updated_at}}</td>
                                 <!-- 🔽 更新ボタン -->
