@@ -30,14 +30,15 @@ class ClothesController extends Controller
 
         return view('clothes.create', compact('colors', 'genres'));
     }
+
     public function store(Request $request)
     {
 
         // バリデーションルール
         $rules = [
             'name' => 'required',
-            'color_id' => 'required|in:1,2,3,4', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒
-            'genre_id' => 'required|in:1,2,3,4', // 1: アウター, 2: ロンT, 3: Tシャツ, 4: ズボン
+            'color_id' => 'required|in:1,2,3,4,5,6', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒, 5: 緑, 6: 紫
+            'genre_id' => 'required|in:1,2,3,4,5,6,7,8', // 1: アウター, 2: ロンT, 3: Tシャツ, 4: ズボン, 5: スウェット, 6: ニット, 7: ハーフパンツ, 8: スカート
             'image' => ['image', 'mimes:jpeg,png,jpg,gif'],
         ];
 
@@ -47,11 +48,6 @@ class ClothesController extends Controller
         $clothes->color_id = $request->input('color_id');
         $clothes->genre_id = $request->input('genre_id');
 
-        // 画像のアップロード
-        /* if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('clothes_images', 'public');
-        $clothes->image = $imagePath;
-    }*/
         $data = $request->all();
         $image = $request->file('image');
         // 画像がアップロードされていれば、storageに保存
@@ -72,12 +68,10 @@ class ClothesController extends Controller
             'updated_at' => NOW()
         ]);
 
-        // データベースに保存
-        // $clothes->save();
-
         // リダイレクト
         return redirect()->route('clothes.index');
     }
+
 
     public function destroy($id)
     {
