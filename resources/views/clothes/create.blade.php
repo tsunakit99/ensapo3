@@ -5,7 +5,7 @@
             {{ __('Clothes Registration') }}
         </h2>
     </x-slot>
-   
+
 
     <div class="py-12 flex justify-center">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
@@ -26,6 +26,8 @@
                                 <option value="2">寒色</option>
                                 <option value="3">白</option>
                                 <option value="4">黒</option>
+                                <option value="5">緑</option>
+                                <option value="6">紫</option>
                             </select>
                         </div>
 
@@ -36,6 +38,10 @@
                                 <option value="2">ロンT</option>
                                 <option value="3">Tシャツ</option>
                                 <option value="4">ズボン</option>
+                                <option value="5">スウェット</option>
+                                <option value="6">ニット</option>
+                                <option value="7">ハーフパンツ</option>
+                                <option value="8">スカート</option>
                             </select>
                         </div>
 

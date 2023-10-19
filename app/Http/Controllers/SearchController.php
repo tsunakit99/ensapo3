@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Clothes;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class SearchController extends Controller
@@ -38,7 +37,7 @@ class SearchController extends Controller
         // 検索結果をビューに渡す
         return view('search.result', compact('clothes', 'pants', 'temperature')); */
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         $temperature = $request->input('temperature');
         $clothesColor = $request->input('clothes_color');
@@ -49,11 +48,27 @@ class SearchController extends Controller
 
         if ($temperature >= 25) {
             $clothesQuery->where('genre_id', 3);
-            $pantsQuery->where('genre_id', 4);
-        } elseif ($temperature >= 16 && $temperature <= 24) {
+            $pantsQuery->where(function ($query) {
+                $query->where('genre_id', 4)
+                    ->orWhere('genre_id', 7)
+                    ->orWhere('genre_id', 8);
+            });
+        } elseif ($temperature >= 18 && $temperature <= 24) {
             $clothesQuery->where('genre_id', 2);
-            $pantsQuery->where('genre_id', 4);
-        } elseif ($temperature <= 15) {
+            $pantsQuery->where(function ($query) {
+                $query->where('genre_id', 4)
+                    ->orWhere('genre_id', 8);
+            });
+        } elseif ($temperature >= 13 && $temperature <= 17) {
+            $clothesQuery->where(function ($query) {
+                $query->where('genre_id', 5)
+                    ->orWhere('genre_id', 6);
+            });
+            $pantsQuery->where(function ($query) {
+                $query->where('genre_id', 4)
+                    ->orWhere('genre_id', 8);
+            });
+        } elseif ($temperature <= 12) {
             $clothesQuery->where('genre_id', 1);
             $pantsQuery->where('genre_id', 4);
         }

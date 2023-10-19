@@ -14,10 +14,8 @@ class ColorsTableSeeder extends Seeder
     public function run(): void
     {
         $colors = [
-            ['name' => '暖色'],
-            ['name' => '寒色'],
-            ['name' => '白'],
-            ['name' => '黒'],
+            ['name' => '緑'],
+            ['name' => '紫'],
         ];
 
         // colors テーブルにデータを挿入
