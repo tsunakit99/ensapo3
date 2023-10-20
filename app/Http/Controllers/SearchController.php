@@ -48,26 +48,21 @@ class SearchController extends Controller
 
         if ($temperature >= 25) {
             $clothesQuery->where('genre_id', 3);
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 7)
-                    ->orWhere('genre_id', 8);
-            });
+
+            $pantsQuery->where('genre_id', 4)
+                ->orWhere('genre_id', 7)
+                ->orWhere('genre_id', 8);
         } elseif ($temperature >= 18 && $temperature <= 24) {
             $clothesQuery->where('genre_id', 2);
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 8);
-            });
+
+            $pantsQuery->where('genre_id', 4)
+                ->orWhere('genre_id', 8);
         } elseif ($temperature >= 13 && $temperature <= 17) {
-            $clothesQuery->where(function ($query) {
-                $query->where('genre_id', 5)
-                    ->orWhere('genre_id', 6);
-            });
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 8);
-            });
+            $clothesQuery->where('genre_id', 5)
+                ->orWhere('genre_id', 6);
+
+            $pantsQuery->where('genre_id', 4)
+                ->orWhere('genre_id', 8);
         } elseif ($temperature <= 12) {
             $clothesQuery->where('genre_id', 1);
             $pantsQuery->where('genre_id', 4);
