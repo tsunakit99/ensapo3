@@ -16,28 +16,32 @@
 
             <div class="mb-4">
               <label for="temperature" class="text-gray-700 dark:text-gray-300">気温：</label>
-              <input type="number" name="temperature" id="temperature" class="form-input" placeholder="気温を入力してください" min="-10" max="40" required>
+              <input type="number" name="temperature" id="temperature" class="form-input" placeholder="気温を入力してください" min="-10" max="50" required>
             </div>
 
             <div class="mb-4">
-              <label for="clothes_color" class="text-gray-700 dark:text-gray-300">服の色(任意)：</label>
+              <label for="clothes_color" class="text-gray-700 dark:text-gray-300">服の色(任意):</label>
               <select name="clothes_color" id="clothes_color" class="form-select">
                 <option value="">-- 服の色を選択 --</option>
                 <option value="1">暖色</option>
                 <option value="2">寒色</option>
                 <option value="3">白</option>
                 <option value="4">黒</option>
+                <option value="5">緑</option>
+                <option value="6">紫</option>
               </select>
             </div>
 
             <div class="mb-4">
-              <label for="pants_color" class="text-gray-700 dark:text-gray-300">パンツの色(任意)：</label>
+              <label for="pants_color" class="text-gray-700 dark:text-gray-300">パンツの色(任意):</label>
               <select name="pants_color" id="pants_color" class="form-select">
                 <option value="">-- パンツの色を選択 --</option>
                 <option value="1">暖色</option>
                 <option value="2">寒色</option>
                 <option value="3">白</option>
                 <option value="4">黒</option>
+                <option value="5">緑</option>
+                <option value="6">紫</option>
               </select>
             </div>
 

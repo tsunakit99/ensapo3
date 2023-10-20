@@ -14,10 +14,10 @@ class GenresTableSeeder extends Seeder
     public function run(): void
     {
         $genres = [
-            ['name' => 'アウター'],
-            ['name' => 'ロンT'],
-            ['name' => 'Tシャツ'],
-            ['name' => 'ズボン'],
+            ['name' => 'スウェット'],
+            ['name' => 'ニット'],
+            ['name' => 'ハーフパンツ'],
+            ['name' => 'スカート'],
         ];
 
         // genres テーブルにデータを挿入
