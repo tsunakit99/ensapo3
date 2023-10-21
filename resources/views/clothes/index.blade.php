@@ -9,9 +9,9 @@
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
-                    <table class="text-center w-full border-collapse">
-                        <thead>
-                            <tr>
+                    <table class="text-center w-full border-collapse"> <!--テーブルタグ-->
+                        <thead> <!--ヘッダー行-->
+                            <tr> <!--行-->
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">服の名前</th>
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">色</th>
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>ジャンル</th>
@@ -21,7 +21,7 @@
                                 <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark" white-space: nowrap>削除</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> <!--服一覧-->
                             @foreach ($clothes as $clothe)
                             <tr class="hover:bg-gray-lighter">
                                 <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600 dark:text-gray-200" white-space: nowrap>{{$clothe->name}}</td>

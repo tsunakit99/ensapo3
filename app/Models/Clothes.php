@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Clothes extends Model
 {
   use HasFactory;
-  protected $fillable = ['name', 'color_id', 'genre_id', 'image'];
-
-  public static function getAllOrderByUpdated_at()
-  {
-    return self::orderBy('updated_at', 'desc')->get();
-  }
+  protected $fillable = [
+    'user_id',
+    'name',
+    'color_id',
+    'genre_id',
+    'image'
+  ];
 
   public function color()
   {
