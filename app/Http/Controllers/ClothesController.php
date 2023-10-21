@@ -49,7 +49,7 @@ class ClothesController extends Controller
         $clothes = $request->all();
         $user = Auth::user()->id;        // ログインユーザーのIDを取得
         $clothes['user_id'] = $user;
-        $clothes['image'] = $path[1];
+        $clothes['image'] = $path[1];  //$path[0] はディレクトリ、$path[1] はファイル名
         Clothes::create($clothes);
 
         /*$clothes_id = Clothes::insertGetId([
