@@ -10,8 +10,8 @@
     <div class="py-12 flex justify-center">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
-                    <form method="POST" action="{{ route('clothes.store') }}" enctype="multipart/form-data">
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800"> <!--enctype="multipart/form-data": ファイルのアップロードが含まれている場合、フォームがファイルデータを含むことをサーバーに伝えるために使用-->
+                    <form method="POST" action="{{ route('clothes.store') }}" enctype="multipart/form-data"> <!--このフォームがサブミットされたときにClothesControllerのstoreが実行-->
                         @csrf
 
                         <div class="mb-4">
