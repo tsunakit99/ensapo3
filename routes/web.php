@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClothesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Models\Clothes;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +18,13 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::middleware('auth')->group(function () {
-      // ? �ǉ��i������ʁj
     Route::get('/search/input', [SearchController::class, 'create'])->name('search.input');
-    // ? �ǉ��i���������j
     Route::get('/search/result', [SearchController::class, 'index'])->name('search.result');
     Route::get('/clothes', [ClothesController::class, 'index'])->name('clothes.index');
-    Route::get('/clothes/create', 'ClothesController@create')->name('clothes.create');
-    Route::post('/clothes/store', 'ClothesController@store')->name('clothes.store');
+    Route::get('/clothes/create', [ClothesController::class, 'create'])->name('clothes.create');
+    Route::post('/clothes/store', [ClothesController::class, 'store'])->name('clothes.store');
+    Route::get('/clothes/edit', [ClothesController::class, 'edit'])->name('clothes.edit');
     Route::resource('clothes', ClothesController::class);
-
-
 });
 
 Route::get('/', function () {
@@ -44,4 +42,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

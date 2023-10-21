@@ -14,12 +14,11 @@ class SearchController extends Controller
     public function index(Request $request)
     {
 
-        $user = Auth::user();
-
         $temperature = $request->input('temperature');
         $clothesColor = $request->input('clothes_color');
         $pantsColor = $request->input('pants_color');
 
+        $user = Auth::user();
         $clothesQuery = $user->clothes(); // ユーザーが登録した服に関するクエリ
         $pantsQuery = $user->clothes(); // ユーザーが登録したパンツに関するクエリ
 
@@ -64,7 +63,7 @@ class SearchController extends Controller
 
         $clothes = $clothesQuery->inRandomOrder()->first();
 
-        return view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
+        return response()->view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
     }
 
     /**
