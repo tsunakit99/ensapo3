@@ -37,7 +37,7 @@ class ClothesController extends Controller
         // バリデーションルール
         $rules = [
             'name' => 'required',
-            'color_id' => 'required|in:1,2,3,4,5,6', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒, 5: 緑, 6: 紫
+            'color_id' => 'required|in:1,2,3,4,5,6,7', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒, 5: 緑, 6: 紫, 7: グレー
             'genre_id' => 'required|in:1,2,3,4,5,6,7,8', // 1: アウター, 2: ロンT, 3: Tシャツ, 4: ズボン, 5: スウェット, 6: ニット, 7: ハーフパンツ, 8: スカート
             'image' => ['image', 'mimes:jpeg,png,jpg,gif'],
         ];
@@ -81,26 +81,14 @@ class ClothesController extends Controller
 
     public function edit($id)
     {
-        $clothe = Clothes::find($id);
-        return response()->view('clothes.edit', compact('clothe'));
+        $clothes = Clothes::find($id);
+        return response()->view('clothes.edit', compact('clothes'));
     }
 
     public function update(Request $request, $id)
     {
-        // 指定した ID の服を取得
-        $clothes = Clothes::find($id);
-
-        // 服の情報を更新
-        $clothes->name = $request->input('name');
-        $clothes->color_id = $request->input('color_id');
-        $clothes->genre_id = $request->input('genre_id');
-
-        // 画像の更新など、必要なら他の属性も更新
-
-        // 服を保存
-        $clothes->save();
-
-        // 更新後のビューを返すか、リダイレクトする
+        //データ更新処理
+        $result = Clothes::find($id)->update($request->all());
         return redirect()->route('clothes.index');
     }
 }
