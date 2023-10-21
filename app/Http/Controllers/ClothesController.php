@@ -37,7 +37,7 @@ class ClothesController extends Controller
         // バリデーションルール
         $rules = [
             'name' => 'required',
-            'color_id' => 'required|in:1,2,3,4,5,6', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒, 5: 緑, 6: 紫
+            'color_id' => 'required|in:1,2,3,4,5,6,7', // 1: 暖色, 2: 寒色, 3: 白, 4: 黒, 5: 緑, 6: 紫, 7: グレー
             'genre_id' => 'required|in:1,2,3,4,5,6,7,8', // 1: アウター, 2: ロンT, 3: Tシャツ, 4: ズボン, 5: スウェット, 6: ニット, 7: ハーフパンツ, 8: スカート
             'image' => ['image', 'mimes:jpeg,png,jpg,gif'],
         ];

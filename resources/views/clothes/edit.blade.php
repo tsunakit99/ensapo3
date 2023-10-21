@@ -28,6 +28,7 @@
                 <option value="4">黒</option>
                 <option value="5">緑</option>
                 <option value="6">紫</option>
+                <option value="7">グレー</option>
               </select>
             </div>
 

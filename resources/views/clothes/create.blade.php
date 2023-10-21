@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">
-            {{ __('Clothes Registration') }}
+            {{ __('服登録') }}
         </h2>
     </x-slot>
 
@@ -28,6 +28,7 @@
                                 <option value="4">黒</option>
                                 <option value="5">緑</option>
                                 <option value="6">紫</option>
+                                <option value="7">グレー</option>
                             </select>
                         </div>
 
