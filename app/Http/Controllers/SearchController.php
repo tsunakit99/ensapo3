@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class SearchController extends Controller
@@ -13,61 +14,24 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        /* リクエストから気温を取得
-        $temperature = $request->input('temperature');
-
-        // 気温に応じてgenre_idを設定
-        $genre_id = 4; // デフォルト値
-
-        if ($temperature >= 25) {
-            $genre_id = 3; // 25度以上ならジャンル3
-        } elseif ($temperature >= 16 && $temperature <= 24) {
-            $genre_id = 2; // 16度から24度の間ならジャンル2
-        } elseif ($temperature <= 15) {
-            $genre_id = 1; // 15度以下ならジャンル1
-        }
-
-        // Clothesテーブルから条件に合った服を取得
-        // コントローラ内でのランダム選択
-        $clothes = Clothes::where('genre_id', $genre_id)->inRandomOrder()->first(); // ランダムに1つの服を取得
-        $pants = Clothes::where('genre_id', 4)->inRandomOrder()->first(); // ランダムに1つのパンツを取得
-
-
-
-        // 検索結果をビューに渡す
-        return view('search.result', compact('clothes', 'pants', 'temperature')); */
-
-        $user = Auth::user();
 
         $temperature = $request->input('temperature');
         $clothesColor = $request->input('clothes_color');
         $pantsColor = $request->input('pants_color');
 
+        $user = Auth::user();
         $clothesQuery = $user->clothes(); // ユーザーが登録した服に関するクエリ
         $pantsQuery = $user->clothes(); // ユーザーが登録したパンツに関するクエリ
 
         if ($temperature >= 25) {
             $clothesQuery->where('genre_id', 3);
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 7)
-                    ->orWhere('genre_id', 8);
-            });
+            $pantsQuery->whereIn('genre_id', [4, 7, 8]);
         } elseif ($temperature >= 18 && $temperature <= 24) {
             $clothesQuery->where('genre_id', 2);
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 8);
-            });
+            $pantsQuery->whereIn('genre_id', [4, 8]);
         } elseif ($temperature >= 13 && $temperature <= 17) {
-            $clothesQuery->where(function ($query) {
-                $query->where('genre_id', 5)
-                    ->orWhere('genre_id', 6);
-            });
-            $pantsQuery->where(function ($query) {
-                $query->where('genre_id', 4)
-                    ->orWhere('genre_id', 8);
-            });
+            $clothesQuery->whereIn('genre_id', [5, 6]);
+            $pantsQuery->whereIn('genre_id', [4, 8]);
         } elseif ($temperature <= 12) {
             $clothesQuery->where('genre_id', 1);
             $pantsQuery->where('genre_id', 4);
@@ -81,10 +45,26 @@ class SearchController extends Controller
             $pantsQuery->where('color_id', $pantsColor);
         }
 
-        $clothes = $clothesQuery->inRandomOrder()->first();
         $pants = $pantsQuery->inRandomOrder()->first();
+        if (!empty($pants)) {
+            if ($pants->color_id == 1) {
+                $clothesQuery->whereNotIn('color_id', [1, 6]);
+            } elseif ($pants->color_id == 2) {
+                $clothesQuery->whereNot('color_id', 2);
+            } elseif ($pants->color_id == 3) {
+                $clothesQuery->whereNot('color_id', 3);
+            } elseif ($pants->color_id == 5) {
+                $clothesQuery->whereNotIn('color_id', [5, 6]);
+            } elseif ($pants->color_id == 6) {
+                $clothesQuery->whereNotIn('color_id', [5, 6]);
+            } elseif ($pants->color_id == 7) {
+                $clothesQuery->whereNot('color_id', 7);
+            }
+        }
 
-        return view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
+        $clothes = $clothesQuery->inRandomOrder()->first();
+
+        return response()->view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
     }
 
     /**
