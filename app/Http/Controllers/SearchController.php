@@ -64,7 +64,7 @@ class SearchController extends Controller
 
         $clothes = $clothesQuery->inRandomOrder()->first();
 
-        return response()->view('search.result', compact('clothes', 'pants', 'temperature', 'clothesColor', 'pantsColor'));
+        return response()->view('search.result', compact('clothes', 'pants', 'temperature'));
     }
 
     /**
